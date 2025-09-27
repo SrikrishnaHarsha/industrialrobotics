@@ -1,0 +1,12 @@
+MODULE Module2
+	CONST robtarget p10 := [[298.79,-619.47,-541.01],[0.244258,0.00456124,-0.969683,-0.00571187],[0,0,-1,0],[9E+9,9E+9,9E+9,9E+9,9E+9,9E+9]];
+	CONST robtarget p20 := [[-253.25,-626.77,-244.09],[0.244258,0.00456122,-0.969683,-0.00571187],[-1,0,0,0],[9E+9,9E+9,9E+9,9E+9,9E+9,9E+9]];
+	VAR num reg6 := 1;
+	VAR num reg7 := 6;
+
+PROC Routine1()
+	MoveJ p10, v7000, z50, MyTool\WObj:=TABLE1;
+	MoveJ p20, v1000, z50, MyTool\WObj:=TABLE1;
+	WaitTime reg7;
+ENDPROC
+ENDMODULE
