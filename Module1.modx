@@ -1,5 +1,9 @@
 MODULE Module1
-        PERS tooldata MyTool := [TRUE,[[31.792631019,0,229.638935148],[0.945518576,0,0.325568154,0]],[1,[0,0,1],[1,0,0,0],0,0,0]];
+        CONST jointtarget JointTarget_1:=[[0,0,0,0,90,-180],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pickapproach:=[[154.765871085,456.28546913,97.280107946],[0.000453731,-0.994750638,0.101949095,-0.008794617],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pickpoint:=[[155.517515783,458.193204381,35.519730902],[0.000465374,-0.994884738,0.10063204,-0.008794007],[-1,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget dropapproach:=[[102.588272882,383.005005474,97.280107946],[0.004261626,-0.938834104,-0.344257133,-0.007706471],[0,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget droppoint:=[[102.588308371,383.004965477,35.519730902],[0.004261626,-0.938834081,-0.344257196,-0.00770647],[0,0,-3,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
 !***********************************************************
     !
     ! Module:  Module1
@@ -23,5 +27,44 @@ MODULE Module1
     !***********************************************************
     PROC main()
         !Add your code here
+        pick;
+        drop;
     ENDPROC
+    
+    PROC pick()
+        Gripper_open;
+        MoveAbsJ JointTarget_1,v1000,z100,Servo\WObj:=pickTablew;
+        MoveJ pickapproach,v1000,fine,Servo\WObj:=pickTablew;
+        MoveL pickpoint,v1000,fine,Servo\WObj:=pickTablew;
+        Gripper_close;
+        MoveL pickapproach,v1000,fine,Servo\WObj:=pickTablew;
+        MoveAbsJ JointTarget_1,v1000,z100,Servo\WObj:=pickTablew;
+    ENDPROC
+    
+    PROC drop()
+        gripper_close;
+        MoveAbsJ JointTarget_1,v1000,z100,Servo\WObj:=pickTablew;
+        MoveJ dropapproach,v1000,fine,Servo\WObj:=dropTablew;
+        MoveL droppoint,v1000,fine,Servo\WObj:=dropTablew;
+        Gripper_open;
+        MoveL dropapproach,v1000,fine,Servo\WObj:=dropTablew;
+        MoveAbsJ JointTarget_1,v1000,z100,Servo\WObj:=pickTablew;
+    ENDPROC
+    
+    PROC Gripper_open()
+        waittime 0.5;
+        reset do_Gripper_close;
+        set do_Gripper_open;
+        waittime 0.5;
+    ENDPROC
+    
+    PROC Gripper_close()
+        WaitTime 0.5;
+        reset do_Gripper_open;
+        set do_gripper_close;
+        waittime 0.5;
+    ENDPROC
+
+        
+        
 ENDMODULE
