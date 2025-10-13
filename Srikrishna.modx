@@ -1,0 +1,228 @@
+MODULE Srikrishna
+
+	CONST robtarget R10 := [[357.15,187.62,-0.92],[0.0244737,-0.000395411,-0.999639,-0.0110594],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget R20 := [[459.72,187.67,-0.88],[0.0244374,-0.000358874,-0.99964,-0.0110722],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget R30 := [[459.72,46.86,-0.88],[0.0244327,-0.000345201,-0.99964,-0.0110718],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget R40 := [[244.85,46.85,-0.89],[0.0244346,-0.000366018,-0.99964,-0.0110727],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget R50 := [[245.13,186.59,-0.88],[0.0244316,-0.000376629,-0.99964,-0.0110733],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget C10 := [[79.91,-411.71,-3.34],[0.0244614,-0.000348461,-0.999639,-0.0111196],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget C20 := [[31.34,-486.63,-3.32],[0.0244565,-0.000337409,-0.999639,-0.0110985],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget C30 := [[-70.24,-426.15,-3.31],[0.0244548,-0.000328079,-0.999639,-0.0111017],[-2,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget C50 := [[300.93,2.16,325.12],[0.0245245,-0.000334821,-0.999638,-0.0110361],[-1,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget C40 := [[30.33,-337.03,-3.29],[0.0244551,-0.000353896,-0.999639,-0.0110943],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST jointtarget Circlehome := [[-80.3713,-25.8198,24.0639,0.00802528,91.7611,-80.3611],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST jointtarget Startocircletransitionpoint := [[-0.513146,8.31963,3.41309,0.000408089,78.2682,-0.51537],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget prepick := [[112.91,431.04,328.59],[0.0279304,0.570533,-0.820778,0.00594905],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget Pick := [[112.40,431.04,276.20],[0.0279466,0.570497,-0.820802,0.00595839],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget pickplacehome := [[302.41,-3.21,589.35],[0.0213258,-0.102045,-0.994527,-0.0069217],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+     CONST robtarget Homek:=[[72.965612701,-15.518561634,289.546112746],[0.038768152,-0.698006721,0.713996336,0.038637814],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_10k:=[[53.023621369,21.451609951,1.069001187],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_20k:=[[87.968499721,22.555942617,1.068425648],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_30k:=[[88.499991364,69.193610553,1.000704421],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_40k:=[[88.50,85.26,0.41],[0.0924348,0.571124,-0.81409,0.0503079],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_50k:=[[88.50,92.95,-1.68],[0.0895693,0.530432,-0.842042,0.0398041],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_60k:=[[88.50,103.83,-7.86],[0.126399,0.528176,-0.837307,0.0630163],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_70k:=[[88.500050608,128.335441927,-13.999788864],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_80k:=[[88.500076542,157.202118626,-13.99919704],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_90k:=[[88.278394581,175.813090419,-13.999310011],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_100k:=[[85.862068468,179.722059262,-14.001233883],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_110k:=[[64.447931539,178.23552605,-14.081554232],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_120k:=[[12.702983258,177.849050387,-14.070523288],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_130k:=[[11.499017906,172.681162071,-14.002165513],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_140k:=[[11.498738001,148.009097486,-14.002374595],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_150k:=[[11.50,107.08,-9.92],[0.148852,0.526292,-0.833608,0.0771886],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_160k:=[[11.50,100.19,-5.65],[0.203515,0.520051,-0.821976,0.111734],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_170k:=[[11.50,92.99,-1.72],[0.0652281,0.531356,-0.844279,0.0244736],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_180k:=[[11.499681235,76.16124611,0.997279562],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Target_190k:=[[12.999419195,21.589159848,0.997346453],[0.010326752,-0.531425662,0.846729442,0.023008168],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    PERS wobjdata Profil := [FALSE,TRUE,"",[[212.2525,322.3099,26.91103],[0.7095702,-0.0001436369,0.0003249973,-0.7046347]],[[0,0,0],[1,0,0,0]]];
+    CONST robtarget pickcubek := [[315.04,122.22,-54.83],[0.0236892,-0.0899815,-0.995622,-0.00885111],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget prepickcubek := [[315.04,122.20,28.07],[0.023683,-0.0899121,-0.995629,-0.00882242],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST jointtarget jpos10 := [[4.51284,2.2487,4.40212,-0.497346,83.4609,14.8376],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget dropcubek := [[314.55,41.78,-56.57],[0.0235747,-0.0900809,-0.99562,-0.00835251],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Predropcubek := [[315.77,41.76,9.93],[0.023617,-0.090059,-0.995622,-0.00832169],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget secondcube := [[397.79,121.97,-54.59],[0.0234938,-0.0899601,-0.995632,-0.00843855],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pickCylinderk := [[315.86,-36.99,-33.25],[0.0314248,-0.0992596,-0.994419,-0.0170357],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget PrepickCylinderk := [[315.86,-36.98,77.67],[0.0314354,-0.0992781,-0.994417,-0.0170496],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget Dropcylinderk := [[318.05,-117.45,-30.87],[0.0162824,-0.0995613,-0.994722,-0.0187352],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget predropcylinderk := [[318.04,-117.45,71.52],[0.0162999,-0.0995617,-0.994721,-0.0187455],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+
+
+PROC SrikrishnaRectangle()
+	MoveAbsJ jHomepose \NoEOffs, v1000, z50, Gripper;
+	MoveJ R10, v200, fine, Gripper;
+	MoveL R20, v200, fine, Gripper;
+	MoveL R30, v200, fine, Gripper;
+	MoveL R40, v200, fine, Gripper;
+	MoveL R50, v200, fine, Gripper;
+	MoveL R10, v200, fine, Gripper;
+	MoveAbsJ jHomepose \NoEOffs, v200, fine, Gripper;
+ENDPROC
+
+PROC SrikrishnCircle()
+	MoveAbsJ Circlehome \NoEOffs, v1000, z50, Gripper;
+	MoveJ C10, v1000, fine, Gripper;
+	MoveC C20, C30, v200, fine, Gripper;
+	MoveC C40, C10, v200, z10, Gripper;
+	MoveAbsJ Circlehome \NoEOffs, v200, fine, Gripper;
+ENDPROC
+
+PROC SrikrishnaStar()
+	MoveAbsJ jHomepose \NoEOffs, v100, fine, Gripper;
+	MoveJ p10, v100, fine, Gripper;
+	MoveL p20, v100, fine, Gripper;
+	MoveL p30, v100, fine, Gripper;
+	MoveL p40, v100, fine, Gripper;
+	MoveL p50, v100, fine, Gripper;
+	MoveL p60, v100, fine, Gripper;
+	MoveL p70, v100, fine, Gripper;
+	MoveL p80, v100, fine, Gripper;
+	MoveL p90, v100, fine, Gripper;
+	MoveL p100, v100, fine, Gripper;
+	MoveL p10, v100, fine, Gripper;
+	MoveAbsJ jHomepose \NoEOffs, v100, fine, Gripper;
+ENDPROC
+
+PROC SrikrishnaPickandDropCylinder()
+	FOR k FROM 0 TO 2 DO
+        
+    
+       Srikrishnagripperopen;
+	   MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+	   MoveJ offs(PrepickCylinderk,80*k,0,0), v1000, fine, Gripper;
+	   MoveL offs(pickCylinderk,80*k,0,0), v1000, fine, Gripper;
+	   Srikrishnagripperclose;
+	   MoveL offs(PrepickCylinderk,80*k,0,0), v1000, fine, Gripper;
+	   MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+       MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+	   MoveJ offs(predropcylinderk,80*k,0,0), v1000, fine, Gripper;
+	   MoveL Dropcylinderk, v1000, fine, Gripper;
+	   Srikrishnagripperopen;
+	   MoveL offs(predropcylinderk,80*k,0,0), v1000, fine, Gripper;
+	  MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+    ENDFOR
+    
+ENDPROC
+
+PROC Srikrishnagripperclose()
+	Reset IIO_do1_R_Gripper_open;
+	Set IIO_do2_R_Gripper_Close;
+	WaitDI IIO_di1_Robot_Gripper_open_FB, 0;
+	WaitTime 1;
+ENDPROC
+
+PROC Srikrishnagripperopen()
+	WaitTime 1;
+	Reset IIO_do2_R_Gripper_Close;
+	Set IIO_do1_R_Gripper_open;
+	WaitDI IIO_di1_Robot_Gripper_open_FB, 1;
+	WaitTime 1;
+ENDPROC
+
+PROC SrikrishnaPickPointer()
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+	MoveJ prepick, v200, fine, Gripper;
+	WaitTime 1;
+	MoveL Pick, v200, fine, Gripper;
+	Srikrishnagripperclose;
+	MoveL prepick, v200, fine, Gripper;
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+ENDPROC
+
+PROC SrikrishnaDropPointer()
+	Srikrishnagripperclose;
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+	MoveJ prepick, v200, fine, Gripper;
+	WaitTime 1;
+	MoveL Pick, v200, fine, Gripper;
+	Srikrishnagripperopen;
+	MoveL prepick, v200, fine, Gripper;
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+ENDPROC
+PROC SriKrishna3DP()
+	 MoveJ Homek,v1000,z100,Gripper\WObj:=Profile;
+        MoveJ Target_10k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_20k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_30k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_40k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_50k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_60k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_70k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_80k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_90k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_100k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_110k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_120k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_130k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_140k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_150k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_160k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_170k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_180k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_190k, v1000, fine, Gripper\WObj:=Profil;
+        MoveL Target_10k, v1000, fine, Gripper\WObj:=Profil;
+        MoveJ Homek, v1000, z100, Gripper\WObj:=Profil;
+ENDPROC
+
+PROC SrikrishnaPickcube1()
+	Srikrishnagripperopen;
+	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+	MoveJ prepickcubek, v1000, fine, Gripper;
+	MoveL pickcubek, v1000, fine, Gripper;
+	Srikrishnagripperclose;
+	MoveL prepickcubek, v1000, fine, Gripper;
+	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+ENDPROC
+
+PROC SrikrishnaPickanddropcube()
+    FOR n FROM 0 TO 2 DO
+        
+    
+    
+        MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+	    MoveJ offs(prepickcubek,80*n,0,0), v1000, fine, Gripper;
+	    MoveL offs(pickcubek,80*n,0,0), v1000, fine, Gripper;
+	    Srikrishnagripperclose;
+	   MoveL offs(prepickcubek,80*n,0,0), v1000, fine, Gripper;
+	    MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+        MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+	   MoveJ offs(Predropcubek,80*n,0,0), v1000, fine, Gripper;
+	   MoveL offs(dropcubek,80*n,0,0), v1000, fine, Gripper;
+	   Srikrishnagripperopen;
+	   MoveL offs(Predropcubek,80*n,0,0), v1000, fine, Gripper;
+	   MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+    endfor
+endproc
+    
+
+PROC Srikrishnadropcube01()
+	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+	MoveJ Predropcubek, v1000, fine, Gripper;
+	MoveL dropcubek, v1000, fine, Gripper;
+	Srikrishnagripperopen;
+	MoveL Predropcubek, v1000, fine, Gripper;
+	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
+ENDPROC
+
+PROC SrikrishnaPickCylinder1()
+	Srikrishnagripperopen;
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+	MoveJ PrepickCylinderk, v1000, fine, Gripper;
+	MoveL pickCylinderk, v1000, fine, Gripper;
+	Srikrishnagripperclose;
+	MoveL PrepickCylinderk, v1000, fine, Gripper;
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+ENDPROC
+
+PROC Srikrishnadropcylinder1()
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+	MoveJ predropcylinderk, v1000, fine, Gripper;
+	MoveL Dropcylinderk, v1000, fine, Gripper;
+	Srikrishnagripperopen;
+	MoveL predropcylinderk, v1000, fine, Gripper;
+	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
+    
+ENDPROC
+ 
+ENDMODULE
