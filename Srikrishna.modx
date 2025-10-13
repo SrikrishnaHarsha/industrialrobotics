@@ -42,11 +42,6 @@ MODULE Srikrishna
     CONST robtarget dropcubek := [[314.55,41.78,-56.57],[0.0235747,-0.0900809,-0.99562,-0.00835251],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     CONST robtarget Predropcubek := [[315.77,41.76,9.93],[0.023617,-0.090059,-0.995622,-0.00832169],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
     CONST robtarget secondcube := [[397.79,121.97,-54.59],[0.0234938,-0.0899601,-0.995632,-0.00843855],[0,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-    CONST robtarget pickCylinderk := [[315.86,-36.99,-33.25],[0.0314248,-0.0992596,-0.994419,-0.0170357],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-    CONST robtarget PrepickCylinderk := [[315.86,-36.98,77.67],[0.0314354,-0.0992781,-0.994417,-0.0170496],[-1,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-    CONST robtarget Dropcylinderk := [[318.05,-117.45,-30.87],[0.0162824,-0.0995613,-0.994722,-0.0187352],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-    CONST robtarget predropcylinderk := [[318.04,-117.45,71.52],[0.0162999,-0.0995617,-0.994721,-0.0187455],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
-    
 
 
 PROC SrikrishnaRectangle()
@@ -84,25 +79,13 @@ PROC SrikrishnaStar()
 	MoveAbsJ jHomepose \NoEOffs, v100, fine, Gripper;
 ENDPROC
 
-PROC SrikrishnaPickandDropCylinder()
-	FOR k FROM 0 TO 2 DO
-        
-    
-       Srikrishnagripperopen;
-	   MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-	   MoveJ offs(PrepickCylinderk,80*k,0,0), v1000, fine, Gripper;
-	   MoveL offs(pickCylinderk,80*k,0,0), v1000, fine, Gripper;
-	   Srikrishnagripperclose;
-	   MoveL offs(PrepickCylinderk,80*k,0,0), v1000, fine, Gripper;
-	   MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-       MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-	   MoveJ offs(predropcylinderk,80*k,0,0), v1000, fine, Gripper;
-	   MoveL Dropcylinderk, v1000, fine, Gripper;
-	   Srikrishnagripperopen;
-	   MoveL offs(predropcylinderk,80*k,0,0), v1000, fine, Gripper;
-	  MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-    ENDFOR
-    
+PROC SrikrishnaMain()
+	SrikrishnaPickPointer;
+	SrikrishnaRectangle;
+	SrikrishnaStar;
+	MoveAbsJ Circlehome \NoEOffs, v1000, z50, Gripper;
+	SrikrishnCircle;
+	SrikrishnaDropPointer;
 ENDPROC
 
 PROC Srikrishnagripperclose()
@@ -121,6 +104,7 @@ PROC Srikrishnagripperopen()
 ENDPROC
 
 PROC SrikrishnaPickPointer()
+	Srikrishnagripperopen;
 	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
 	MoveJ prepick, v200, fine, Gripper;
 	WaitTime 1;
@@ -166,7 +150,6 @@ PROC SriKrishna3DP()
 ENDPROC
 
 PROC SrikrishnaPickcube1()
-	Srikrishnagripperopen;
 	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
 	MoveJ prepickcubek, v1000, fine, Gripper;
 	MoveL pickcubek, v1000, fine, Gripper;
@@ -174,27 +157,6 @@ PROC SrikrishnaPickcube1()
 	MoveL prepickcubek, v1000, fine, Gripper;
 	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
 ENDPROC
-
-PROC SrikrishnaPickanddropcube()
-    FOR n FROM 0 TO 2 DO
-        
-    
-    
-        MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
-	    MoveJ offs(prepickcubek,80*n,0,0), v1000, fine, Gripper;
-	    MoveL offs(pickcubek,80*n,0,0), v1000, fine, Gripper;
-	    Srikrishnagripperclose;
-	   MoveL offs(prepickcubek,80*n,0,0), v1000, fine, Gripper;
-	    MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
-        MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
-	   MoveJ offs(Predropcubek,80*n,0,0), v1000, fine, Gripper;
-	   MoveL offs(dropcubek,80*n,0,0), v1000, fine, Gripper;
-	   Srikrishnagripperopen;
-	   MoveL offs(Predropcubek,80*n,0,0), v1000, fine, Gripper;
-	   MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
-    endfor
-endproc
-    
 
 PROC Srikrishnadropcube01()
 	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
@@ -204,25 +166,4 @@ PROC Srikrishnadropcube01()
 	MoveL Predropcubek, v1000, fine, Gripper;
 	MoveAbsJ jpos10 \NoEOffs, v1000, fine, Gripper;
 ENDPROC
-
-PROC SrikrishnaPickCylinder1()
-	Srikrishnagripperopen;
-	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-	MoveJ PrepickCylinderk, v1000, fine, Gripper;
-	MoveL pickCylinderk, v1000, fine, Gripper;
-	Srikrishnagripperclose;
-	MoveL PrepickCylinderk, v1000, fine, Gripper;
-	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-ENDPROC
-
-PROC Srikrishnadropcylinder1()
-	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-	MoveJ predropcylinderk, v1000, fine, Gripper;
-	MoveL Dropcylinderk, v1000, fine, Gripper;
-	Srikrishnagripperopen;
-	MoveL predropcylinderk, v1000, fine, Gripper;
-	MoveAbsJ jHomepose \NoEOffs, v1000, fine, Gripper;
-    
-ENDPROC
- 
 ENDMODULE
